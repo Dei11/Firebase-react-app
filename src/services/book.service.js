@@ -7,7 +7,6 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
-  doc,
 } from "firebase/firestore";
 
 const bookCollectionRef = collection(db, "books");
@@ -20,8 +19,8 @@ class BookDataService {
     return updateDoc(bookCollectionRef, bookId, updatedBook);
   };
 
-  deleteBook = (bookId) => {
-    return deleteDoc(bookCollectionRef, bookId);
+  deleteBook = async (bookId) => {
+    return await deleteDoc(bookCollectionRef, bookId);
   };
 
   getAllBooks = () => {

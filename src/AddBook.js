@@ -9,13 +9,11 @@ function AddBook() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
     if (title === "" || author === "") {
       setMessage({ error: true, message: "Please fill in all fields" });
       return;
     }
     const newBook = { title, author, status };
-    console.log(newBook);
     try {
       await BookDataService.addBook(newBook);
       setMessage({ error: false, message: "Book added successfully" });
@@ -24,6 +22,7 @@ function AddBook() {
     }
     setTitle("");
     setAuthor("");
+    setMessage("");
   };
   return (
     <div>
@@ -41,17 +40,25 @@ function AddBook() {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <input type="text" placeholder="Year" />
+        <input
+          type="text"
+          placeholder="Status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        />
         <button onClick={handleSubmit}>Add Book</button>
         <br />
         <br />
         <br />
         <br />
 
-        <label>{title}</label>
+        {/* <label>{title}</label>
 
         <br />
         <label>{author}</label>
+
+        <br />
+        <label>{status}</label> */}
       </form>
     </div>
   );
